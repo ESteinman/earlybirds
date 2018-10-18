@@ -1,20 +1,17 @@
-= form_with url: new_article_path, scope: :article  do |f|
-  %div
-    = f.label :header
-    = f.text_field :header
-  %div
-    = f.label :subheader
-    = f.text_area :subheader
-  %div
-    = f.label :byline
-    = f.text_area :byline
-  %div
-    = f.label :body
-    = f.text_area :body
-  %div
-    = f.check_box:Politics
-    Politics
-    %br/
-    %br/
-  %div
-    = f.submit "Submit", class: "btn btn-success" 
+= form_with model: @article, remote: false do |f|
+  %br/
+  = f.label :header
+  = f.text_field :header
+  %br/
+  = f.label :subheader
+  = f.text_area :subheader
+  %br/
+  = f.label :byline
+  = f.text_area :byline
+  %br/
+  = f.label :body
+  = f.text_area :body
+  %br/
+  = f.collection_select :category_id, @categories, :id, :name
+  %br/
+  = f.submit "Create Article", class: "btn btn-success" 
