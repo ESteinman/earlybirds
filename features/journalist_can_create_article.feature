@@ -1,9 +1,14 @@
+@javascript
 Feature: Create articles inside category
     As a journalist,
     in order to share the latest news,
     I would like to able to create an article and choose the right category for it.
 
   Background:
+    Given the following categories exist
+    | name     |
+    | Politics |
+
     When I visit the create page
 
   Scenario: Journalist create article inside category
@@ -11,5 +16,7 @@ Feature: Create articles inside category
     And I fill in "Subheader" with "Excited about learning a new framework"
     And I fill in "Byline" with "Angelica the Great"
     And I fill in "Body" with "Angelica in craftacademy"
-    And I click on Politics
-    Then I click "Submit"
+    And I select 'Politics' as the category
+    And I click "Create Article"
+    Then I should see 'Article successfully created'
+    Then there should be a Article with header 'Learning Rails 5' in the database
